@@ -1,6 +1,6 @@
 <?php
 session_start(); // Start the session (if not already started)
-require_once 'include/db_connect.php'; // Include database connection
+require_once 'db_connect.php'; // Include database connection
 
 // Function to get the cart count from the database
 function getCartCount($conn, $user_id)

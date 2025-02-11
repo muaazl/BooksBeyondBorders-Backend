@@ -161,13 +161,13 @@ function sendInvoiceEmail($to, $subject, $message, $attachmentPath) {
         $mail->isSMTP();                                            //Send using SMTP
         $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
         $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-        $mail->Username   = 'muaazlattif@example.com';                     //SMTP username
-        $mail->Password   = 'aklhmotemphhofrd';                               //SMTP password
+        $mail->Username   = 'your_email@example.com';                     //SMTP username
+        $mail->Password   = 'your_app_password';                               //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
         $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
         //Recipients
-        $mail->setFrom('muaazlattif@example.com', 'Books Beyond Borders');
+        $mail->setFrom('your_email@example.com', 'Books Beyond Borders');
         $mail->addAddress($to);     //Add a recipient
 
         //Attachments

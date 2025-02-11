@@ -1,5 +1,7 @@
 <?php
-require_once __DIR__ . '/assets/db_connect.php'; // Database connection
+
+include 'include/header.php';
+require_once __DIR__ . '/include/db_connect.php'; // Database connection
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +22,6 @@ require_once __DIR__ . '/assets/db_connect.php'; // Database connection
 </head>
 
 <body>
-
-<?php
-include 'include/header.php';
-?>
 
     <section id="product1" class="section-p1">
         <div class="search-bar-container">

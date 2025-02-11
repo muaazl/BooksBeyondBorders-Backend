@@ -25,7 +25,7 @@
 
             <a href="shop.php" class="normal">Continue Shopping</a>
         </div>
-    </section>
+    </section><br><br><br><br>
 
     <?php include 'include/footer.php'; ?>
     <script src="assets/script.js"></script>

@@ -1,6 +1,6 @@
 <?php // search.php
 
-require_once __DIR__ . '/assets/db_connect.php'; // Database connection
+require_once __DIR__ . '/../include/db_connect.php'; // Database connection
 
 // Get the search query from the URL
 $query = isset($_GET['query']) ? trim($_GET['query']) : '';

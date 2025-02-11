@@ -898,6 +898,7 @@ footer .copyright {
     gap: 30px;
     padding: 40px 40px;
     text-align: center;
+    margin: 30px 0;
 }
 
 #categories a {
@@ -2738,6 +2739,15 @@ footer .copyright {
     margin: 8px 0;
 }
 
+.user-details button {
+    background-color: #088178;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
 /* Purchase history table */
 .purchase-history {
     margin-bottom: 30px;
@@ -2763,6 +2773,10 @@ footer .copyright {
 
 .purchase-history td {
     background-color: white;
+}
+
+.purchase-history tr {
+    cursor: pointer;
 }
 
 /* Order tracking section */
@@ -2826,26 +2840,26 @@ footer .copyright {
 }
 
 /* Table Styling */
-.tracking-result table {
+.order-details table {
     padding-top: 20px;
     width: 100%;
     border-collapse: collapse;
-    margin-top: 20px;
+    margin: 20px 0;
 }
 
-.tracking-result table th {
+.order-details table th {
     background-color: #f4f3ee;
     color: black;
 }
 
-.tracking-result table th,
-.tracking-result table td {
+.order-details table th,
+.order-details table td {
     border: 1px solid #ddd;
     padding: 10px 15px;
     text-align: left;
 }
 
-.tracking-result table tr:nth-child(odd) {
+.order-details table tr:nth-child(odd) {
     background-color: #f9f9f9;
 }
 
