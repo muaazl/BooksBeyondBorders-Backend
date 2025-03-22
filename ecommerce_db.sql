@@ -1,14 +1,55 @@
-DROP DATABASE IF EXISTS `ecommerce_db`;
-CREATE DATABASE `ecommerce_db`;
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
+--
+-- Host: 127.0.0.1:3306
+-- Generation Time: Mar 22, 2025 at 07:40 PM
+-- Server version: 9.1.0
+-- PHP Version: 8.3.14
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `ecommerce_db`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
 CREATE TABLE IF NOT EXISTS `carts` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
 INSERT INTO `carts` (`id`, `user_id`, `created_at`) VALUES
-(1, 1, '2025-02-05 10:33:41'),
-(2, 2, '2025-02-10 05:03:26');
+(1, 1, '2025-02-05 05:03:41'),
+(2, 2, '2025-02-09 23:33:26');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cart_items`
+--
+
+DROP TABLE IF EXISTS `cart_items`;
 CREATE TABLE IF NOT EXISTS `cart_items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `cart_id` int NOT NULL,
@@ -22,11 +63,24 @@ CREATE TABLE IF NOT EXISTS `cart_items` (
   KEY `cart_id` (`cart_id`),
   KEY `product_id` (`product_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `categories`
+--
+
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE IF NOT EXISTS `categories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
 INSERT INTO `categories` (`id`, `name`) VALUES
 (4, 'Success Secrets'),
 (3, 'Vi Keeland Bestsellers'),
@@ -37,6 +91,14 @@ INSERT INTO `categories` (`id`, `name`) VALUES
 (7, 'Ruthless People Series'),
 (8, 'Lauren Asher Book Series'),
 (9, 'Novels');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
   `id` int NOT NULL AUTO_INCREMENT,
   `user_id` int NOT NULL,
@@ -46,10 +108,23 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `orders`
+--
+
 INSERT INTO `orders` (`id`, `user_id`, `order_date`, `total_amount`, `status`) VALUES
 (1, 1, '2025-02-07 17:00:29', 2800.00, 'Pending'),
 (2, 1, '2025-02-07 18:05:25', 16200.00, 'Pending'),
-(3, 2, '2025-02-10 11:07:47', 9900.00, 'Pending');
+(3, 2, '2025-02-10 11:07:47', 9900.00, 'Shipped');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+DROP TABLE IF EXISTS `order_items`;
 CREATE TABLE IF NOT EXISTS `order_items` (
   `id` int NOT NULL AUTO_INCREMENT,
   `order_id` int NOT NULL,
@@ -63,6 +138,11 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   KEY `product_id` (`product_id`),
   KEY `fk_order_items_orders` (`order_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
 INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`, `title`, `author`, `image`) VALUES
 (1, 1, 16, 1, 2800.00, 'Piranesi', 'Susanna Clarke', 'images/products/newbie_s/n4.jpg'),
 (2, 2, 32, 1, 2600.00, 'Inappropriate', 'Vi Keeland', 'images/products/vi_keeland/n8.jpg'),
@@ -72,6 +152,14 @@ INSERT INTO `order_items` (`id`, `order_id`, `product_id`, `quantity`, `price`, 
 (6, 3, 4, 1, 3200.00, 'It Starts with Us', 'Colleen Hoover', 'images/products/featured/f3.jpg'),
 (7, 3, 19, 1, 1900.00, 'Roadside Picnic', 'Arkady & Boris Strugatsky', 'images/products/newbie_s/n7.jpg'),
 (8, 3, 50, 1, 2300.00, 'Twisted Games', 'Ana Huang', 'images/products/twisted_s/n2.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products`
+--
+
+DROP TABLE IF EXISTS `products`;
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
@@ -81,6 +169,11 @@ CREATE TABLE IF NOT EXISTS `products` (
   `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=107 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `products`
+--
+
 INSERT INTO `products` (`id`, `title`, `author`, `price`, `description`, `image`) VALUES
 (1, 'The Love Hypothesis', 'Ali Hazelwood', 3800.00, 'A charming rom-com about a scientist who enters a fake relationship with a professor, only to find that real love can be the most unpredictable experiment of all.', 'images/products/featured/f1.jpg'),
 (2, 'The Nightingale', 'Kristin Hannah', 4500.00, 'When a German captain requisitions Vianne\'s home, she and her daughter must live with the enemy or lose everything. Without food or money or hope, as danger ...', 'images/products/featured/f2.jpg'),
@@ -185,12 +278,25 @@ INSERT INTO `products` (`id`, `title`, `author`, `price`, `description`, `image`
 (101, 'Slaughterhouse-Five', 'Kurt Vonnegut', 1350.00, 'A darkly humorous and profound novel about war, time travel, and the human condition.', 'images/products/n46.jpg'),
 (102, 'Their Eyes Were Watching God', 'Zora Neale Hurston', 1800.00, 'A powerful exploration of love, identity, and the struggle for autonomy in the deep South.', 'images/products/n47.jpg'),
 (103, 'One Hundred Years of Solitude', 'Gabriel Garcia Marquez', 2000.00, 'A magical realist masterpiece chronicling the rise and fall of the Buendía family.', 'images/products/n48.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `product_categories`
+--
+
+DROP TABLE IF EXISTS `product_categories`;
 CREATE TABLE IF NOT EXISTS `product_categories` (
   `product_id` int NOT NULL,
   `category_id` int NOT NULL,
   KEY `product_id` (`product_id`),
   KEY `category_id` (`category_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `product_categories`
+--
+
 INSERT INTO `product_categories` (`product_id`, `category_id`) VALUES
 (1, 1),
 (2, 1),
@@ -298,6 +404,14 @@ INSERT INTO `product_categories` (`product_id`, `category_id`) VALUES
 (104, 1),
 (105, 3),
 (106, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL,
@@ -307,6 +421,16 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `users`
+--
+
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `role`) VALUES
 (1, 'Muaaz', 'muaazlattif@gmail.com', '$2y$10$cYwaFNHH6eg9kC30.jBtvO3hM48wIQGCUTp0G3e48isam7W.eAOES', 'Admin'),
 (2, 'Marcus', 'muaazlattif2606@gmail.com', '$2y$10$GIDWLgcwn27eTOOxcFaXAONTdHu/nylCrsOjthpns1pFXwZU9RKfy', 'Customer');
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
